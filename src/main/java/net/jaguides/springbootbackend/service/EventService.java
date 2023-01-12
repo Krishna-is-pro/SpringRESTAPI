@@ -2,13 +2,16 @@ package net.jaguides.springbootbackend.service;
 
 import net.jaguides.springbootbackend.model.Event;
 import net.jaguides.springbootbackend.repository.EventRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@Service
 public class EventService {
 
-    private static EventRepository eventRepository;
-    public static void saveEvents(List<Event> events)
+    private EventRepository eventRepository;
+    public void saveEvents(List<Event> events)
     {
         int size = events.size();
         int counter =0;

@@ -17,16 +17,14 @@ public class Event {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
 
-
-
-    private long id;
+    private Long id;
     @Column(name ="event_name")
     private String eventname;
 
     @Column(name = "event_location")
     private String eventlocation;
 
-    @Column(name="email_id")
-    private String emailId;
+    @Column(name="date")
+    private String date;
 
 }

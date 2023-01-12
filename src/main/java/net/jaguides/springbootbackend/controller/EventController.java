@@ -1,9 +1,8 @@
 package net.jaguides.springbootbackend.controller;
-
-import net.jaguides.springbootbackend.service.EventService;
 import net.jaguides.springbootbackend.exception.ResourceNotFoundException;
 import net.jaguides.springbootbackend.model.Event;
 import net.jaguides.springbootbackend.repository.EventRepository;
+import net.jaguides.springbootbackend.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,9 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private EventService eventService;
 
     @GetMapping
     public List<Event> getAllEvents(){
@@ -35,7 +37,7 @@ public class EventController {
     @PostMapping("/save")
     public ResponseEntity<Void> saveEvents(@RequestBody List<Event> events){
 
-        EventService.saveEvents(events);
+        eventService.saveEvents(events);
         System.out.println("Data saved");
         return new ResponseEntity<>(HttpStatus.OK);
 
@@ -57,7 +59,7 @@ public class EventController {
 
         updateEvent.setEventname(eventDetails.getEventname());
         updateEvent.setEventlocation(eventDetails.getEventlocation());
-        updateEvent.setEmailId(eventDetails.getEmailId());
+        updateEvent.setDate(eventDetails.getDate());
 
         eventRepository.save(updateEvent);
 
